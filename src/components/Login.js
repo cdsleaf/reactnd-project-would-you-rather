@@ -1,20 +1,64 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleInitialLoginData } from '../actions/shared';
+import logo from '../images/react_redux_logo.jpg';
 
-class Login extends Component {
+export class Login extends Component {
+
+  constructor(props){
+    super(props);
+    this.state={
+      value: '',
+    }
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleChange(event){
+    this.setState({value: event.target.value});
+  }
+
+  handleClick(event){
+    console.log(this.state.value);
+  }
 
   componentDidMount(){
     this.props.dispatch(handleInitialLoginData());
   }
 
   render() {
+    const users = this.props.users;
     return (
-      <div>
-        Login TEST
+      <div className={"login-container"}>
+        <p>Welcome to the Would You Rather App!!!</p>
+        <hr/>
+        <img className={"logo"} src={logo} alt="Logo" />
+        <p>Sign In</p>
+        <select 
+          className={"login-user-list"} 
+          value={this.state.value} 
+          onChange={this.handleChange}>
+          <option value='' disabled>Select User</option>
+          {users.map( user => (
+            <option value={user.id} key={user.id}>{user.name}</option>
+          ))}
+        </select>
+        <button 
+          className={"login-signIn-button"}
+          onClick={this.handleClick}>
+           Sign In
+        </button>
       </div>
     );
   }
 }
 
-export default connect()(Login)
+function mapStateToProps({ users }, props){
+  return {
+    ...props,
+    users: Object.values(users),
+  }
+}
+
+export default connect(mapStateToProps)(Login)
