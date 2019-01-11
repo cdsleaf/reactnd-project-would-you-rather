@@ -1,30 +1,24 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import configureStore from 'redux-mock-store'
-import { Login } from './Login';
+import Login from './Login';
+import { Provider } from 'react-redux';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 describe('Login Component', () => {
-  let wrapper = null;
   let mockStore = configureStore([]);
-
   const initialState = { users: {id: 'testUser1', name: 'testUserNm'} };
   const store = mockStore(initialState);
-  const context = { store };
+
+  const setup = () => {
+    return shallow(<Provider store={store}><Login /></Provider>); 
+  }
 
   it('renders without crashing', () => {
-    wrapper = shallow(<Login />,{ context });
+    setup();
   });
-
-  it('check the onChange event in selecting user', () => {
-    const mockedEvent = {
-      target: {
-        value: 'testUserId'
-      }
-    };
-    console.log("!!!!", wrapper);
-    wrapper.find('select').simulate('change', mockedEvent);
-    expect(wrapper.state('value')).toEqual('testUserId');
-  })
 });
 
 
