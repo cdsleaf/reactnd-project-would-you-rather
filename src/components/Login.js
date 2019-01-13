@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleInitialLoginData } from '../actions/shared';
+import { setAuthedUser } from '../actions/auth';
 import logo from '../images/react_redux_logo.jpg';
 
 export class Login extends Component {
@@ -8,7 +9,7 @@ export class Login extends Component {
   constructor(props){
     super(props);
     this.state={
-      value: '',
+      value: null,
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -20,7 +21,11 @@ export class Login extends Component {
   }
 
   handleClick(event){
-    console.log(this.state.value);
+    if(this.state.value === null) {
+      alert("please select the user for login");
+      return;
+    }
+    this.props.dispatch(setAuthedUser(this.state.value));
   }
 
   componentDidMount(){
