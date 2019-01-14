@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleInitialLoginData } from '../actions/shared';
 import { setAuthedUser } from '../actions/auth';
@@ -9,7 +10,7 @@ export class Login extends Component {
   constructor(props){
     super(props);
     this.state={
-      value: null,
+      value: '',
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -17,11 +18,15 @@ export class Login extends Component {
   }
 
   handleChange(event){
-    this.setState({value: event.target.value});
+    const selectedValue = event.target.value;
+    this.setState(state => ({
+      ...state,
+      value: selectedValue,
+    }));
   }
 
   handleClick(event){
-    if(this.state.value === null) {
+    if(this.state.value === '') {
       alert("please select the user for login");
       return;
     }
@@ -33,15 +38,17 @@ export class Login extends Component {
   }
 
   render() {
-    const users = this.props.users;
+    const {toHome, users} = this.props;
+    if(toHome) return <Redirect to='/app' />
+
     return (
-      <div className={"login-container"}>
+      <div className={'login-container'}>
         <p>Welcome to the Would You Rather App!!!</p>
         <hr/>
-        <img className={"logo"} src={logo} alt="Logo" />
+        <img className={'logo'} src={logo} alt="Logo" />
         <p>Sign In</p>
         <select 
-          className={"login-user-list"} 
+          className={'login-user-list'} 
           value={this.state.value} 
           onChange={this.handleChange}>
           <option value='' disabled>Select User</option>
@@ -50,18 +57,18 @@ export class Login extends Component {
           ))}
         </select>
         <button 
-          className={"login-signIn-button"}
+          className={'login-signIn-button'}
           onClick={this.handleClick}>
-           Sign In
+            Sign In
         </button>
       </div>
     );
   }
 }
 
-function mapStateToProps({ users }, props){
+function mapStateToProps({ auth, users }){
   return {
-    ...props,
+    toHome: auth.isAuthenticated,
     users: Object.values(users),
   }
 }

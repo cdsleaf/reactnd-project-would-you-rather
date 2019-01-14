@@ -12,8 +12,7 @@ export function handleInitialLoginData(){
   
 export function handlInitialData(){
   return (dispatch) => {
-    return getInitialData().then(({users, questions}) => {
-      dispatch(receiveUsers(users));
+    return getInitialData().then(({ questions }) => {
       dispatch(receiveQuestions(questions));
     })
   }

@@ -1,6 +1,6 @@
 import { SET_AUTHED_USER } from '../actions/auth'
 
-export default function auth (state = {}, action) {
+export default function auth (state = {isAuthenticated: false}, action) {
   switch (action.type) {
     case SET_AUTHED_USER :
       return {
@@ -9,8 +9,6 @@ export default function auth (state = {}, action) {
           isAuthenticated: true,
       }
     default :
-      return {
-        isAuthenticated: false,
-      }
+      return state;
   }
 }

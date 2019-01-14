@@ -10,7 +10,7 @@ export function getUsers(){
 }
 
 export function getInitialData(){
-  return Promise.all(_getUsers, _getQuestions)
+  return Promise.all([_getUsers, _getQuestions])
   .then(([users, questions]) => ({ 
     users, questions
   }));

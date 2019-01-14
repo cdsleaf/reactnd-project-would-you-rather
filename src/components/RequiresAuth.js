@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router'  
 
-export default function (ComposedComponent) {  
+export default function (ComposedComponent, redirectUrl) {  
   class Authenticate extends Component {
 
+    state = {
+      toLogin: false,
+    }
+
     render() {
-      const { isAuthenticated, redirectUrl } = this.props;
+      const { isAuthenticated, redirectUrl, match } = this.props;
+      if(!isAuthenticated) return <Redirect to={redirectUrl} />
       return (
-        <div>
-          { isAuthenticated ? <ComposedComponent {...this.props} /> : <Redirect to={redirectUrl} /> }
-        </div>
+        <ComposedComponent match={match} />
       );
     }
   }

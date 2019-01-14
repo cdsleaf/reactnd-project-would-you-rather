@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter, Route} from 'react-router-dom';
 import { connect } from 'react-redux';
 import Login from './Login';
@@ -6,13 +6,14 @@ import RequiresAuth from './RequiresAuth';
 import MainContainer from './MainContainer';
 
 class App extends Component {
+
   render() {
     return (
       <BrowserRouter>
-        <Fragment>
+        <div>
           <Route path="/login" component={Login} />
-          <Route path="/" exact component={RequiresAuth(MainContainer)} />
-        </Fragment>
+          <Route path="/app" component={RequiresAuth(MainContainer)} />
+        </div>
       </BrowserRouter>
     );
   }

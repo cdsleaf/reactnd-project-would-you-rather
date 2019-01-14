@@ -1,8 +1,9 @@
-import React, { Component, Fragment  } from 'react';
+import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handlInitialData } from '../actions/shared';
 import DashBoard from './DashBoard';
+import Nav from './Nav';
 
 class MainContainer extends Component {
 
@@ -11,28 +12,28 @@ class MainContainer extends Component {
   }
 
   render() {
-    const loading = this.props.loading;
+    const { loading, match } = this.props;
     return (
-      <Fragment>
-        <div className="app-container">
-
-          {loading 
-            ? null 
-            : <div>
-                <Route exact path={this.props.match.path} component={DashBoard} />
-              </div>
-          }
-        </div>
-      </Fragment>
+      <div className="app-container">
+        <Nav />
+        <hr />
+        {loading 
+          ? null 
+          : <div>
+              <Route exact path={match.path} component={DashBoard} />
+            </div>
+        }
+      </div>
     );
   }
 }
 
-function mapStateToProps({auth, users, questions}){
+function mapStateToProps({auth, users, questions}, props){
   return {
-    loading: auth.authedUser === null,
+    loading: false, //auth.authedUser === null,
     users,
-    questions
+    questions,
+    ...props
   };
 }
 
