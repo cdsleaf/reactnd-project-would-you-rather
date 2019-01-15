@@ -36,10 +36,6 @@ code {
   text-align: center;
 }
 
-.login-title {
-  font-style: italic;
-}
-
 .logo {
   width: 30%;
 }
@@ -69,15 +65,16 @@ code {
   font-weight: bold;
 }
 
-.nav ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  text-decoration: none;
-}
-
-.nav li:first-child {
-  padding-left: 0;
+.nav {
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    text-decoration: none;
+  }
+  li:first-child {
+    padding-left: 0;
+  }
 }
 
 .nav-link {
@@ -92,22 +89,22 @@ code {
 .user-info {
   display: flex;
   margin-left: auto;
-}
 
-.user-info p {
-  margin: auto;
-}
+  p {
+    margin: auto;
+  }
 
-.user-info button {
-  margin: 1.5em;
-  border-radius: 0.5em;
-  border: none;
-  cursor: pointer;
-}
+  button {
+    margin: 1.5em;
+    border-radius: 0.5em;
+    border: none;
+    cursor: pointer;
+  }
 
-.user-info button:hover {
-  background-color: black;
-  color: white;
+  button:hover {
+    background-color: black;
+    color: white;
+  }
 }
 
 .logout-icon {
@@ -124,19 +121,19 @@ code {
 .dashboard-header {
   display: flex;
   border-bottom: 0.1em solid grey;
-}
 
-.dashboard-header div {
-  flex: 1;
-}
+  div {
+    flex: 1;
+  }
 
-.dashboard-header p {
-  text-align: center;
-  cursor: pointer
-}
+  p {
+    text-align: center;
+    cursor: pointer
+  }
 
-.dashboard-header p:hover{
-  color: blue
+  p:hover{
+    color: blue
+  }
 }
 
 .dashboard-header-right {
