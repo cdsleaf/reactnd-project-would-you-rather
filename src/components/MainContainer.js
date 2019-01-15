@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handlInitialData } from '../actions/shared';
 import DashBoard from './DashBoard';
 import Nav from './Nav';
+import UserInfo from './UserInfo';
 
 class MainContainer extends Component {
 
@@ -14,14 +15,17 @@ class MainContainer extends Component {
   render() {
     const { loading, match } = this.props;
     return (
-      <div className="app-container">
-        <Nav />
+      <div className='app-container'>
+        <div className='header'>
+          <Nav />
+          <UserInfo />
+        </div>
         <hr />
         {loading 
           ? null 
-          : <div>
+          : <Fragment>
               <Route exact path={match.path} component={DashBoard} />
-            </div>
+            </Fragment>
         }
       </div>
     );

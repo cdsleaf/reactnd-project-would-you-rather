@@ -8,6 +8,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style-type: none;
+  padding: 10px;
+  text-decoration: none;
+}
+
+hr {
+  margin: 0 1em;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -45,6 +59,12 @@ code {
   height: 3em;
 }
 
+.header {
+  display: flex;
+  margin-left: 4em;
+  margin-right: 4em;
+}
+
 .nav-active {
   font-weight: bold;
 }
@@ -60,3 +80,65 @@ code {
   padding-left: 0;
 }
 
+.nav-link {
+  text-decoration: none;
+  color: gray;
+}
+
+.nav-link:hover {
+  color:blue;
+}
+
+.user-info {
+  display: flex;
+  margin-left: auto;
+}
+
+.user-info p {
+  margin: auto;
+}
+
+.user-info button {
+  margin: 1.5em;
+  border-radius: 0.5em;
+  border: none;
+  cursor: pointer;
+}
+
+.user-info button:hover {
+  background-color: black;
+  color: white;
+}
+
+.logout-icon {
+  vertical-align: middle;
+  margin: 0.3em;
+}
+
+.dashboard {
+  width: 50%;
+  margin: 1em auto;
+  border: 0.1em solid grey;
+}
+
+.dashboard-header {
+  display: flex;
+  border-bottom: 0.1em solid grey;
+}
+
+.dashboard-header div {
+  flex: 1;
+}
+
+.dashboard-header p {
+  text-align: center;
+  cursor: pointer
+}
+
+.dashboard-header p:hover{
+  color: blue
+}
+
+.dashboard-header-right {
+  border-left: 0.1em solid grey;
+}

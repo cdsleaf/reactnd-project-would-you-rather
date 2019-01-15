@@ -10,7 +10,8 @@ export class Login extends Component {
   constructor(props){
     super(props);
     this.state={
-      value: '',
+      userId: '',
+      userName: '',
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -21,7 +22,8 @@ export class Login extends Component {
     const selectedValue = event.target.value;
     this.setState(state => ({
       ...state,
-      value: selectedValue,
+      userId: selectedValue,
+      userName: this.props.users[selectedValue].name,
     }));
   }
 
@@ -30,7 +32,7 @@ export class Login extends Component {
       alert("please select the user for login");
       return;
     }
-    this.props.dispatch(setAuthedUser(this.state.value));
+    this.props.dispatch(setAuthedUser(this.state.userId, this.state.userName));
   }
 
   componentDidMount(){
@@ -39,6 +41,7 @@ export class Login extends Component {
 
   render() {
     const {toHome, users} = this.props;
+    const usersArray = Object.values(users);
     if(toHome) return <Redirect to='/app' />
 
     return (
@@ -49,10 +52,10 @@ export class Login extends Component {
         <p>Sign In</p>
         <select 
           className={'login-user-list'} 
-          value={this.state.value} 
+          value={this.state.userId} 
           onChange={this.handleChange}>
           <option value='' disabled>Select User</option>
-          {users.map( user => (
+          {usersArray.map( user => (
             <option value={user.id} key={user.id}>{user.name}</option>
           ))}
         </select>
@@ -69,7 +72,7 @@ export class Login extends Component {
 function mapStateToProps({ auth, users }){
   return {
     toHome: auth.isAuthenticated,
-    users: Object.values(users),
+    users,
   }
 }
 

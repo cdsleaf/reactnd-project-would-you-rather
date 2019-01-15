@@ -6,6 +6,7 @@ export default function auth (state = {isAuthenticated: false}, action) {
       return {
           ...state,
           authedUser: action.id,
+          authedUserName: action.name,
           isAuthenticated: true,
       }
     default :
