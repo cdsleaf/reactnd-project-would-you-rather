@@ -11,8 +11,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
+          <Route exact path="/" component={RequiresAuth(MainContainer)} />
           <Route path="/login" component={Login} />
-          <Route path="/app" component={RequiresAuth(MainContainer)} />
         </div>
       </BrowserRouter>
     );

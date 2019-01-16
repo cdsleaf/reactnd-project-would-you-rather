@@ -5,10 +5,11 @@ import { FaSignOutAlt } from 'react-icons/fa';
 class UserInfo extends Component {
 
   render() {
-    const userName = this.props.authedUserName;
+    const { authedUserName, authedUserAvatarURL } = this.props;
     return (
       <div className='user-info'>
-        <p>Hello!!! {userName}</p>
+        <p>Hello!!! {authedUserName}</p>
+        <img src={process.env.PUBLIC_URL + authedUserAvatarURL} alt="authedUserAvatar" />
         <button>
         <FaSignOutAlt className='logout-icon'/>
           Logout
@@ -18,9 +19,11 @@ class UserInfo extends Component {
   }
 }
 
-function mapStateToProps({ auth }){
+function mapStateToProps({ auth, users }){
+  const authedUserObject = users[auth.authedUser];
   return {
-    authedUserName: auth.authedUserName,
+    authedUserName: authedUserObject.name,
+    authedUserAvatarURL: authedUserObject.avatarURL,
   }
 }
 

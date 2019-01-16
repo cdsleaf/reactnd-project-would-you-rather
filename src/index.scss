@@ -14,7 +14,7 @@ ul {
 
 li {
   list-style-type: none;
-  padding: 10px;
+  padding: 0.5em;
   text-decoration: none;
 }
 
@@ -28,11 +28,11 @@ code {
 }
 
 .login-container {
-  border: 0.1em solid grey;
-  padding: 0.5em;
-  margin: 10% auto;
   width: 30%;
   height: 50%;
+  margin: 10% auto;
+  border: 0.1em solid grey;
+  padding: 0.5em;
   text-align: center;
 }
 
@@ -41,18 +41,16 @@ code {
 }
 
 .login-user-list {
-  display: block; 
-  margin: 1em;
-  margin-left: auto; margin-right: auto;
+  display: block;
   width: 100%;
+  height: 2em;
+  margin: 0.5em 0;
 }
 
 .login-signIn-button {
-  display: block; 
-  margin: 0.3em;
-  margin-left: auto; margin-right: auto;
+  display: block;
   width: 100%;
-  height: 3em;
+  height: 2em;
 }
 
 .header {
@@ -92,6 +90,11 @@ code {
 
   p {
     margin: auto;
+  }
+
+  img {
+    width: 4em;
+    height: 4em;
   }
 
   button {
@@ -138,4 +141,56 @@ code {
 
 .dashboard-header-right {
   border-left: 0.1em solid grey;
+}
+
+.question-card {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+  border: 0.1em solid grey;
+}
+
+.question-card-header {
+  border-bottom: 0.1em solid grey;
+  p {
+    margin: 0.5em;
+  }
+}
+
+.card-content{
+  width: 100%;
+  margin: 0.5em 0;
+  border-left: 0.1em solid grey;
+  padding: 0 0.5em;
+
+  p {
+    margin: 0;
+    font-size: 1.5em;
+  }
+}
+
+.card-avatar {
+  img {
+    width: 6em;
+    height: 6em;
+  }
+}
+
+.question-card-body {
+  display: flex;
+}
+
+.question-summary {
+  p {
+    font-size: 1em;
+    margin: 0.5em 0em;
+  }
+
+  button {
+    width: 100%;
+    background: white;
+    border: 0.1em solid #0ABAB5;
+    color: #0ABAB5;
+    padding: 0.2em;
+  }
 }

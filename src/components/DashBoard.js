@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import QuestionsCard from './QuestionCard';
+import QuestionSummary from './QuestionSummary';
+
+const UNANSWERED = 'unanswered';
+const ANSWERED = 'answered';
+const Card = QuestionsCard(QuestionSummary);
 
 export class DashBoard extends Component {
 
   constructor(props){
     super(props);
-    this.UNANSWERED = 'unanswered';
-    this.ANSWERED = 'answered';
 
     this.handleClick = this.handleClick.bind(this);
   }
@@ -19,31 +22,32 @@ export class DashBoard extends Component {
   componentDidMount(){
   }
 
-  render() {
+  render() { 
+    const { questions } = this.props;
     return (
       <div className='dashboard'>
         <div className='dashboard-header'>
           <div>
-            <p id={this.UNANSWERED} onClick={this.handleClick}>Unanswered Questions</p>
+            <p id={UNANSWERED} onClick={this.handleClick}>Unanswered Questions</p>
           </div>
           <div className='dashboard-header-right'>
-            <p id={this.ANSWERED} onClick={this.handleClick}>Answered Questions</p>
+            <p id={ANSWERED} onClick={this.handleClick}>Answered Questions</p>
           </div>
         </div>
         <div className='question-list'>
-          <QuestionsCard />
-
+          {questions.map(question => (
+            <Card key={question.id} questionId={question.id} userId={question.author}/>
+          ))}
         </div>
       </div>
     );
   }
 }
 
-function mapStateToProps({ users }){
+function mapStateToProps({ users, questions }){
   return {
-
+    questions: Object.values(questions),
   }
 }
-
 
 export default connect(mapStateToProps)(DashBoard)

@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import { Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handlInitialData } from '../actions/shared';
 import DashBoard from './DashBoard';
 import Nav from './Nav';
 import UserInfo from './UserInfo';
+import QuestionCard from './QuestionCard';
+import AskQuestion from './AskQuestion';
 
 class MainContainer extends Component {
 
@@ -15,6 +17,7 @@ class MainContainer extends Component {
   render() {
     const { loading, match } = this.props;
     return (
+      <BrowserRouter>
       <div className='app-container'>
         <div className='header'>
           <Nav />
@@ -25,9 +28,12 @@ class MainContainer extends Component {
           ? null 
           : <Fragment>
               <Route exact path={match.path} component={DashBoard} />
+              <Route path='/ask' component={QuestionCard(AskQuestion)} />
             </Fragment>
+            
         }
       </div>
+      </BrowserRouter>
     );
   }
 }

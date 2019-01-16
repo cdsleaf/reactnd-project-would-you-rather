@@ -10,10 +10,8 @@ export function getUsers(){
 }
 
 export function getInitialData(){
-  return Promise.all([_getUsers, _getQuestions])
-  .then(([users, questions]) => ({ 
-    users, questions
-  }));
+  return Promise.all([_getUsers(), _getQuestions()])
+  .then(([users, questions]) => ({ users, questions }));
 }
 
 export function saveQuestion(info){
