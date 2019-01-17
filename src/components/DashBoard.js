@@ -36,7 +36,7 @@ export class DashBoard extends Component {
         </div>
         <div className='question-list'>
           {questions.map(question => (
-            <Card key={question.id} questionId={question.id} userId={question.author}/>
+            <Card key={question.id} questionId={question.id} />
           ))}
         </div>
       </div>

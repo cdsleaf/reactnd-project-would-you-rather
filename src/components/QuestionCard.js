@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-export default function (ComposedComponent){
+export default function (ComposedComponent, questionCardClass = 'question-card'){
   class QuestionsCard extends Component {
-
-    constructor(props){
-      super(props);
-      this.state={}
-    }
 
     render() {
       const { user, questionId } = this.props;
@@ -15,7 +10,7 @@ export default function (ComposedComponent){
       const avatarURL = user.avatarURL;
       
       return (
-        <div className='question-card'>
+        <div className={questionCardClass}>
           <div className='question-card-header'>
             <p>{headerTitle}</p>
           </div>
@@ -33,10 +28,12 @@ export default function (ComposedComponent){
     }
   }
 
-  function mapStateToProps({ users }, props){
+  function mapStateToProps({ users, questions }, props){
+    const questionId = props.questionId || props.match.params.questionId;
+    const question = questions[questionId];
     return {
-      user: users[props.userId],
-      props,
+      user: users[question.author],
+      questionId,
     }
   }
 

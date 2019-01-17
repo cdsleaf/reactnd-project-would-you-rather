@@ -1,3 +1,5 @@
+$border-style: 0.1em solid grey;
+
 body {
   margin: 0;
   padding: 0;
@@ -20,6 +22,7 @@ li {
 
 hr {
   margin: 0 1em;
+  border: 0.1em solid #0ABAB5;
 }
 
 code {
@@ -31,7 +34,7 @@ code {
   width: 30%;
   height: 50%;
   margin: 10% auto;
-  border: 0.1em solid grey;
+  border: $border-style;
   padding: 0.5em;
   text-align: center;
 }
@@ -41,14 +44,12 @@ code {
 }
 
 .login-user-list {
-  display: block;
   width: 100%;
   height: 2em;
   margin: 0.5em 0;
 }
 
 .login-signIn-button {
-  display: block;
   width: 100%;
   height: 2em;
 }
@@ -118,12 +119,12 @@ code {
 .dashboard {
   width: 50%;
   margin: 1em auto;
-  border: 0.1em solid grey;
+  border: $border-style;
 }
 
 .dashboard-header {
   display: flex;
-  border-bottom: 0.1em solid grey;
+  border-bottom: $border-style;
 
   div {
     flex: 1;
@@ -140,27 +141,37 @@ code {
 }
 
 .dashboard-header-right {
-  border-left: 0.1em solid grey;
+  border-left: $border-style;
 }
 
 .question-card {
   display: flex;
   flex-direction: column;
   margin: 1em;
-  border: 0.1em solid grey;
+  border: $border-style;
+}
+
+.question-card-for-asking {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 5em auto;
+  border: $border-style;
 }
 
 .question-card-header {
-  border-bottom: 0.1em solid grey;
+  border-bottom: $border-style;
+  background-color: powderblue;
   p {
     margin: 0.5em;
+    font-weight: bold;
   }
 }
 
 .card-content{
   width: 100%;
   margin: 0.5em 0;
-  border-left: 0.1em solid grey;
+  border-left: $border-style;
   padding: 0 0.5em;
 
   p {
@@ -192,5 +203,25 @@ code {
     border: 0.1em solid #0ABAB5;
     color: #0ABAB5;
     padding: 0.2em;
+    cursor: pointer;
+  }
+}
+
+.question-options {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+
+  label {
+    margin-bottom: 0.5em;
+  }
+
+  button {
+    width: 100%;
+    background: white;
+    border: 0.1em solid #0ABAB5;
+    color: #0ABAB5;
+    padding: 0.2em;
+    cursor: pointer;
   }
 }
