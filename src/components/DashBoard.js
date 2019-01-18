@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import QuestionsCard from './QuestionCard';
 import QuestionSummary from './QuestionSummary';
 
-const UNANSWERED = 'unanswered';
-const ANSWERED = 'answered';
 const Card = QuestionsCard(QuestionSummary);
 
 export class DashBoard extends Component {
@@ -12,25 +10,38 @@ export class DashBoard extends Component {
   constructor(props){
     super(props);
 
+    this.state = {
+      selectedTab: 'unAnsweredQuestions',
+    }
+
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(event){
-    console.log(event.target.id);
+    this.setState({
+      selectedTab: event.target.id,
+    })  
   }
 
   componentDidMount(){
+    
   }
-
+  
   render() { 
-    const { questions } = this.props;
+    const UNANSWERED = 'unAnsweredQuestions';
+    const ANSWERED = 'answeredQuestions';
+    const questions = this.props[this.state.selectedTab];
     return (
       <div className='dashboard'>
         <div className='dashboard-header'>
-          <div>
+          <div className={this.state.selectedTab === UNANSWERED 
+            ? 'dashboard-header-selected' 
+            : ''}>
             <p id={UNANSWERED} onClick={this.handleClick}>Unanswered Questions</p>
           </div>
-          <div className='dashboard-header-right'>
+          <div className={this.state.selectedTab === ANSWERED 
+            ? 'dashboard-header-right dashboard-header-selected' 
+            : 'dashboard-header-right'}>
             <p id={ANSWERED} onClick={this.handleClick}>Answered Questions</p>
           </div>
         </div>
@@ -44,9 +55,13 @@ export class DashBoard extends Component {
   }
 }
 
-function mapStateToProps({ users, questions }){
+export function mapStateToProps({ auth, users, questions }){
+  
+  const authedUser = users[auth.authedUser];
+  const questionsArray = Object.values(questions).sort((a, b) => b.timestamp - a.timestamp);
   return {
-    questions: Object.values(questions),
+    unAnsweredQuestions: questionsArray.filter(v => authedUser.answers[v.id] === undefined),
+    answeredQuestions: questionsArray.filter(v => authedUser.answers[v.id] !== undefined)
   }
 }
 

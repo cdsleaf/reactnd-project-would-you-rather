@@ -125,6 +125,7 @@ code {
 .dashboard-header {
   display: flex;
   border-bottom: $border-style;
+  font-weight: bold;
 
   div {
     flex: 1;
@@ -142,6 +143,10 @@ code {
 
 .dashboard-header-right {
   border-left: $border-style;
+}
+
+.dashboard-header-selected {
+  background-color: lightgrey;
 }
 
 .question-card {
