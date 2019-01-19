@@ -7,6 +7,7 @@ import Nav from './Nav';
 import UserInfo from './UserInfo';
 import QuestionCard from './QuestionCard';
 import AskQuestion from './AskQuestion';
+import QuestionResult from './QuestionResult';
 
 class MainContainer extends Component {
 
@@ -29,6 +30,7 @@ class MainContainer extends Component {
           : <Fragment>
               <Route exact path={match.path} component={DashBoard} />
               <Route path='/ask/:questionId' component={QuestionCard(AskQuestion, 'question-card-for-asking')} />
+              <Route path='/result/:questionId' component={QuestionCard(QuestionResult, 'question-card-for-asking')} />
             </Fragment>           
         }
       </div>
@@ -39,7 +41,7 @@ class MainContainer extends Component {
 
 function mapStateToProps({auth, users, questions}, props){
   return {
-    loading: false, //auth.authedUser === null,
+    loading: !auth.isAuthenticated,
     users,
     questions,
     ...props
