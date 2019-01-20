@@ -11,7 +11,10 @@ class QuestionSummary extends Component {
     return (
       <div className='question-summary'>
         <p>...{questionText}...</p>
-        <Link to={`/${linkPath}/${id}`}>
+        <Link to={{
+          pathname: `/${linkPath}`,
+          state: { questionId: id }
+        }}>
           <button type='button'>
             View Poll
           </button>

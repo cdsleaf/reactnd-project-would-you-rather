@@ -29,8 +29,8 @@ class MainContainer extends Component {
           ? null 
           : <Fragment>
               <Route exact path={match.path} component={DashBoard} />
-              <Route path='/ask/:questionId' component={QuestionCard(AskQuestion, 'question-card-for-asking')} />
-              <Route path='/result/:questionId' component={QuestionCard(QuestionResult, 'question-card-for-asking')} />
+              <Route path='/ask' component={QuestionCard(AskQuestion, 'question-card-for-asking')} />
+              <Route path='/result' component={QuestionCard(QuestionResult, 'question-card-for-asking')} />
             </Fragment>           
         }
       </div>
