@@ -1,4 +1,4 @@
-import { RECEIVE_USERS } from '../actions/users';
+import { RECEIVE_USERS, SAVE_QUESTION_ANSWER_AT_USERS } from '../actions/users';
 import users from './users';
 
 it('should return the initial state', () => {
@@ -22,5 +22,47 @@ it('should handle RECEIVE_USERS', () => {
       userName: 'testUser2'
     },
   }
+  expect(users(dumyState, action)).toEqual(expectedState);
+})
+
+it('should update question answer in the user store', () => {
+  const dumyState = {
+    sarahedo: {
+      id: 'sarahedo',
+      name: 'Sarah Edo',
+      avatarURL: '/img/users-1.svg',
+      answers: {
+        "8xf0y6ziyjabvozdd253nd": 'optionOne',
+        "6ni6ok3ym7mf1p33lnez": 'optionOne',
+        "am8ehyc8byjqgar0jgpub9": 'optionTwo',
+        "loxhs1bqm25b708cmbf3g": 'optionTwo'
+      },
+      questions: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9']
+    },
+  };
+
+  const action = {
+    type: SAVE_QUESTION_ANSWER_AT_USERS,
+    userId: 'sarahedo', 
+    questionId: 'vthrdm985a262al8qx3do', 
+    answer: 'optionOne',
+  }
+
+  const expectedState = {
+    sarahedo: {
+      id: 'sarahedo',
+      name: 'Sarah Edo',
+      avatarURL: '/img/users-1.svg',
+      answers: {
+        "8xf0y6ziyjabvozdd253nd": 'optionOne',
+        "6ni6ok3ym7mf1p33lnez": 'optionOne',
+        "am8ehyc8byjqgar0jgpub9": 'optionTwo',
+        "loxhs1bqm25b708cmbf3g": 'optionTwo',
+        "vthrdm985a262al8qx3do": 'optionOne',
+      },
+      questions: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9']
+    },
+  }
+
   expect(users(dumyState, action)).toEqual(expectedState);
 })
