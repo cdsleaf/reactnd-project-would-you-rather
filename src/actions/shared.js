@@ -1,6 +1,19 @@
-import { getUsers, getInitialData, saveQuestionAnswer } from '../utils/api';
-import { receiveUsers, saveQuestionAnswerAtUsers } from './users';
-import { receiveQuestions, saveQuestionAnswerAtQuestion } from './questions';
+import { 
+  getUsers, 
+  getInitialData, 
+  saveQuestionAnswer,
+  saveQuestion,
+ } from '../utils/api';
+import { 
+  receiveUsers, 
+  saveQuestionAnswerAtUsers,
+  addNewQuesitonAtUsers,
+} from './users';
+import { 
+  receiveQuestions, 
+  saveQuestionAnswerAtQuestion, 
+  addNewQuesitonAtQuestion,
+} from './questions';
 import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
 export function handleInitialLoginData(){
@@ -23,17 +36,33 @@ export function handlInitialData(){
   }
 }
 
-export function saveQuestionAnswerAtAll(userId, question, answer){
+export function saveQuestionAnswerAtAll(userId, questionId, answer){
   return (dispatch) => {
     const info = {
       authedUser: userId, 
-      qid: question, 
+      qid: questionId, 
       answer,
     }
     dispatch(showLoading())
     return saveQuestionAnswer(info).then(res => {
-      dispatch(saveQuestionAnswerAtUsers(userId, question, answer));
-      dispatch(saveQuestionAnswerAtQuestion(userId, question, answer));
+      dispatch(saveQuestionAnswerAtUsers(userId, questionId, answer));
+      dispatch(saveQuestionAnswerAtQuestion(userId, questionId, answer));
+      dispatch(hideLoading());
+    })
+  }
+}
+
+export function addNewQuestionAnswerAtAll(optionOneText, optionTwoText, author){
+  return (dispatch) => {
+    const question = {
+      optionOneText, 
+      optionTwoText, 
+      author,
+    }
+    dispatch(showLoading())
+    return saveQuestion(question).then(res => {
+      dispatch(addNewQuesitonAtUsers(res.author, res.id));
+      dispatch(addNewQuesitonAtQuestion(res));
       dispatch(hideLoading());
     })
   }

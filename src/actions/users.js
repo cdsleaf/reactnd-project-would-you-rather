@@ -1,5 +1,6 @@
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const SAVE_QUESTION_ANSWER_AT_USERS = 'SAVE_QUESTION_ANSWER_AT_USERS';
+export const ADD_NEW_QUESTION_AT_USERS = 'ADD_NEW_QUESTION_AT_USERS';
 
 export function receiveUsers(users){
   return {
@@ -12,5 +13,12 @@ export function saveQuestionAnswerAtUsers(userId, questionId, answer){
   return {
     type: SAVE_QUESTION_ANSWER_AT_USERS,
     userId, questionId, answer,
+  }
+}
+
+export function addNewQuesitonAtUsers(userId, questionId){
+  return {
+    type: ADD_NEW_QUESTION_AT_USERS,
+    userId, questionId
   }
 }

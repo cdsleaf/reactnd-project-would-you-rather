@@ -259,3 +259,62 @@ code {
     border-top: 0.1em solid blue;
   }
 }
+
+.new-question {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 5em auto;
+  border: $border-style;
+}
+
+.new-question-header {
+  border-bottom: 0.1em solid #0ABAB5;
+
+  p {
+    text-align: center;
+  }
+}
+
+.new-question-body {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5em;
+
+  p {
+    margin-top: 0;
+    margin-bottom: 0.5em; 
+  }
+
+  hr {
+    height: 0.1em;
+    width: 100%;
+    margin: 0;
+    border: none;
+    border-top: 0.1em solid grey;
+    text-align: center;
+    overflow: visible;
+  }
+
+  hr:after {
+    position: relative;
+    padding: 0 1em;
+    top: -0.8em;
+    content: 'OR';
+    background-color: white;
+  }
+
+  input {
+    height: 1.5em;
+    margin: 1em 0;
+  }
+
+  button {
+    width: 100%;
+    background: white;
+    border: 0.1em solid #0ABAB5;
+    color: #0ABAB5;
+    padding: 0.2em;
+    cursor: pointer;
+  }
+}

@@ -8,6 +8,7 @@ import UserInfo from './UserInfo';
 import QuestionCard from './QuestionCard';
 import AskQuestion from './AskQuestion';
 import QuestionResult from './QuestionResult';
+import NewQuestion from './NewQuestion';
 
 class MainContainer extends Component {
 
@@ -31,6 +32,7 @@ class MainContainer extends Component {
               <Route exact path={match.path} component={DashBoard} />
               <Route path='/ask' component={QuestionCard(AskQuestion, 'question-card-for-asking')} />
               <Route path='/result' component={QuestionCard(QuestionResult, 'question-card-for-asking')} />
+              <Route path='/new' component={NewQuestion} />
             </Fragment>           
         }
       </div>

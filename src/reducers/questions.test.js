@@ -1,4 +1,8 @@
-import { RECEIVE_QUESTIONS, SAVE_QUESTION_ANSWER_AT_QUESTION } from '../actions/questions';
+import { 
+  RECEIVE_QUESTIONS, 
+  SAVE_QUESTION_ANSWER_AT_QUESTION,
+  ADD_NEW_QUESTION_AT_QUESTION,
+} from '../actions/questions';
 import questions from './questions';
 
 it('should return the initial state', () => {
@@ -67,3 +71,69 @@ it('should update question answer in the question store', () => {
 
   expect(questions(dumyState, action)).toEqual(expectedState);
 });
+
+it('should add new ID of the question in the question store', () => {
+  const dumyState = {
+    vthrdm985a262al8qx3do: {
+      id: 'vthrdm985a262al8qx3do',
+      author: 'tylermcginnis',
+      timestamp: 1489579767190,
+      optionOne: {
+        votes: ['tylermcginnis'],
+        text: 'find $50 yourself',
+      },
+      optionTwo: {
+        votes: ['johndoe'],
+        text: 'have your best friend find $500'
+      }
+    },
+  };
+
+  const action = {
+    type: ADD_NEW_QUESTION_AT_QUESTION,
+    question: {
+      id: 'newQuestionId',
+      author: 'sarahedo',
+      timestamp: 9489579767190,
+      optionOne: {
+        votes: [],
+        text: 'new optionOne',
+      },
+      optionTwo: {
+        votes: [],
+        text: 'new optionTwo'
+      }
+    }
+  }
+
+  const expectedState = {
+    vthrdm985a262al8qx3do: {
+      id: 'vthrdm985a262al8qx3do',
+      author: 'tylermcginnis',
+      timestamp: 1489579767190,
+      optionOne: {
+        votes: ['tylermcginnis'],
+        text: 'find $50 yourself',
+      },
+      optionTwo: {
+        votes: ['johndoe'],
+        text: 'have your best friend find $500'
+      }
+    },
+    newQuestionId: {
+      id: 'newQuestionId',
+      author: 'sarahedo',
+      timestamp: 9489579767190,
+      optionOne: {
+        votes: [],
+        text: 'new optionOne',
+      },
+      optionTwo: {
+        votes: [],
+        text: 'new optionTwo'
+      }
+    }
+  }
+
+  expect(questions(dumyState, action)).toEqual(expectedState);
+})
