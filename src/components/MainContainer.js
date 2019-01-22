@@ -9,6 +9,7 @@ import QuestionCard from './QuestionCard';
 import AskQuestion from './AskQuestion';
 import QuestionResult from './QuestionResult';
 import NewQuestion from './NewQuestion';
+import LeaderBoard from './LeaderBoard';
 
 class MainContainer extends Component {
 
@@ -33,6 +34,7 @@ class MainContainer extends Component {
               <Route path='/ask' component={QuestionCard(AskQuestion, 'question-card-for-asking')} />
               <Route path='/result' component={QuestionCard(QuestionResult, 'question-card-for-asking')} />
               <Route path='/new' component={NewQuestion} />
+              <Route path='/leaderboard' component={LeaderBoard} />
             </Fragment>           
         }
       </div>
