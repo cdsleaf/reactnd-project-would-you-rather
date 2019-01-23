@@ -6,7 +6,7 @@ class LeaderBoard extends Component {
   render() {
     const { userList } = this.props;
     return (
-      <div className='dashboard'>
+      <div className='leader-board'>
         {userList.map(user => (
           <ScoreCard key={user.id} user={user}/>
         ))
