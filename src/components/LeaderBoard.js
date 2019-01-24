@@ -4,13 +4,17 @@ import ScoreCard from './ScoreCard';
 
 class LeaderBoard extends Component {
   render() {
-    const { userList } = this.props;
+    const { userList, medalColors } = this.props;
     return (
       <div className='leader-board'>
-        {userList.map(user => (
-          <ScoreCard key={user.id} user={user}/>
-        ))
-        }
+        {userList.map((user, index) => (
+          <ScoreCard 
+            key={user.id} 
+            user={user} 
+            medal={medalColors[index] === undefined 
+              ? '' 
+              : medalColors[index]}/>
+        ))}
       </div>
     )
   }
@@ -28,6 +32,7 @@ function mapStateToProps({ users }){
   }, []).sort((a,b) => b.totalScore-a.totalScore)
   return {
     userList,
+    medalColors: ['goldMedalColor', 'silverMedalColor', 'bronzeMedalColor'],
   }
 }
 
