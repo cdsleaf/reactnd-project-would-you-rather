@@ -1,6 +1,7 @@
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const SAVE_QUESTION_ANSWER_AT_QUESTION = 'SAVE_QUESTION_ANSWER_AT_QUESTION';
 export const ADD_NEW_QUESTION_AT_QUESTION = 'ADD_NEW_QUESTION_AT_QUESTION';
+export const RESET_QUESTIONS = 'RESET_QUESTIONS';
 
 export function receiveQuestions(questions){
   return {
@@ -20,5 +21,11 @@ export function addNewQuesitonAtQuestion(question){
   return {
     type: ADD_NEW_QUESTION_AT_QUESTION,
     question
+  }
+}
+
+export function resetQuestions(){
+  return {
+    type: RESET_QUESTIONS,
   }
 }

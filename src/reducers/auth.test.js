@@ -1,4 +1,4 @@
-import { SET_AUTHED_USER } from '../actions/auth'
+import { SET_AUTHED_USER, RESET_AUTH } from '../actions/auth'
 import auth from './auth';
 
 it('should return the initial state', () => {
@@ -15,6 +15,21 @@ it('should handle SET_AUTHED_USER', () => {
   const expectedState = {
     authedUser: 'userId',
     isAuthenticated: true
+  }
+  expect(auth(dumyState, action)).toEqual(expectedState);
+})
+
+it('should handle RESET_AUTH', () => {
+  const dumyState = {
+    isAuthenticated: true,
+    authedUser: 'testUserId',
+  }
+  const action= {
+    type: RESET_AUTH,
+  }
+  const expectedState = {
+    isAuthenticated: false,
+    authedUser: '',
   }
   expect(auth(dumyState, action)).toEqual(expectedState);
 })

@@ -1,4 +1,7 @@
-import { SET_AUTHED_USER } from '../actions/auth'
+import { 
+  SET_AUTHED_USER,
+  RESET_AUTH,
+ } from '../actions/auth'
 
 export default function auth (state = {isAuthenticated: false}, action) {
   switch (action.type) {
@@ -7,6 +10,12 @@ export default function auth (state = {isAuthenticated: false}, action) {
           ...state,
           authedUser: action.id,
           isAuthenticated: true,
+      }
+    case RESET_AUTH :
+      return {
+        ...state,
+        authedUser: '',
+        isAuthenticated: false,
       }
     default :
       return state;

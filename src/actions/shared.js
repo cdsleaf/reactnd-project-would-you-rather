@@ -4,15 +4,18 @@ import {
   saveQuestionAnswer,
   saveQuestion,
  } from '../utils/api';
+import { resetAuth } from './auth';
 import { 
   receiveUsers, 
   saveQuestionAnswerAtUsers,
   addNewQuesitonAtUsers,
+  resetUsers,
 } from './users';
 import { 
   receiveQuestions, 
   saveQuestionAnswerAtQuestion, 
   addNewQuesitonAtQuestion,
+  resetQuestions,
 } from './questions';
 import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
@@ -65,5 +68,13 @@ export function addNewQuestionAnswerAtAll(optionOneText, optionTwoText, author){
       dispatch(addNewQuesitonAtQuestion(res));
       dispatch(hideLoading());
     })
+  }
+}
+
+export function logOut(){
+  return (dispatch) => {
+    dispatch(resetAuth());
+    dispatch(resetUsers());
+    dispatch(resetQuestions());
   }
 }

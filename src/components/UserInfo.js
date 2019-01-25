@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FaSignOutAlt } from 'react-icons/fa';
+import { logOut } from '../actions/shared';
 
 class UserInfo extends Component {
+
+  constructor(props){
+    super(props);
+
+    this.handleClikc = this.handleClikc.bind(this);
+  }
+
+  handleClikc() {
+    this.props.dispatch(logOut());
+  }
 
   render() {
     const { authedUserName, authedUserAvatarURL } = this.props;
@@ -10,7 +21,7 @@ class UserInfo extends Component {
       <div className='user-info'>
         <p>Hello!!! {authedUserName}</p>
         <img src={process.env.PUBLIC_URL + authedUserAvatarURL} alt="authedUserAvatar" />
-        <button>
+        <button onClick={this.handleClikc}>
         <FaSignOutAlt className='logout-icon'/>
           Logout
         </button>
@@ -19,9 +30,10 @@ class UserInfo extends Component {
   }
 }
 
-function mapStateToProps({ auth, users }){
+function mapStateToProps({ auth, users }, props){
   const authedUserObject = users[auth.authedUser];
   return {
+    ...props,
     authedUserName: authedUserObject.name,
     authedUserAvatarURL: authedUserObject.avatarURL,
   }

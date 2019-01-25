@@ -2,6 +2,7 @@ import {
   RECEIVE_QUESTIONS, 
   SAVE_QUESTION_ANSWER_AT_QUESTION,
   ADD_NEW_QUESTION_AT_QUESTION,
+  RESET_QUESTIONS,
 } from '../actions/questions';
 
 export default function questions (state={}, action) {
@@ -23,10 +24,12 @@ export default function questions (state={}, action) {
         }
       }
     case ADD_NEW_QUESTION_AT_QUESTION:
-      return{
+      return {
         ...state,
         [action.question.id]: action.question,
       }
+    case RESET_QUESTIONS:
+      return {}
     default: 
       return state;
   }

@@ -2,6 +2,7 @@ import {
   RECEIVE_QUESTIONS, 
   SAVE_QUESTION_ANSWER_AT_QUESTION,
   ADD_NEW_QUESTION_AT_QUESTION,
+  RESET_QUESTIONS,
 } from '../actions/questions';
 import questions from './questions';
 
@@ -134,6 +135,30 @@ it('should add new ID of the question in the question store', () => {
       }
     }
   }
+
+  expect(questions(dumyState, action)).toEqual(expectedState);
+})
+
+it('should handl RESET_QUESTIONS', () => {
+  const dumyState = {
+    vthrdm985a262al8qx3do: {
+      id: 'vthrdm985a262al8qx3do',
+      author: 'tylermcginnis',
+      timestamp: 1489579767190,
+      optionOne: {
+        votes: ['tylermcginnis'],
+        text: 'find $50 yourself',
+      },
+      optionTwo: {
+        votes: ['johndoe'],
+        text: 'have your best friend find $500'
+      }
+    },
+  };
+  const action = {
+    type: RESET_QUESTIONS,
+  }
+  const expectedState = {}
 
   expect(questions(dumyState, action)).toEqual(expectedState);
 })
