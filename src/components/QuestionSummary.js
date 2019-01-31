@@ -7,14 +7,11 @@ class QuestionSummary extends Component {
   render() {
     const { id, optionOne } = this.props.question;
     const questionText = optionOne.text;
-    const linkPath = this.props.answered ? 'result' : 'ask';
+    const linkPath = 'questions';
     return (
       <div className='question-summary'>
         <p>...{questionText}...</p>
-        <Link to={{
-          pathname: `/${linkPath}`,
-          state: { questionId: id }
-        }}>
+        <Link to={`/${linkPath}/${id}` } >
           <button type='button'>
             View Poll
           </button>
@@ -24,11 +21,9 @@ class QuestionSummary extends Component {
   }
 }
 
-function mapStateToProps({ auth, users, questions }, props){
-  const { answers } = users[auth.authedUser];
+function mapStateToProps({ questions }, props){
   return {
     question: questions[props.questionId],
-    answered: answers[props.questionId] !== undefined,
   }
 }
 

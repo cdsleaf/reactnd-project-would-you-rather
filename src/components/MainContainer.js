@@ -6,8 +6,7 @@ import DashBoard from './DashBoard';
 import Nav from './Nav';
 import UserInfo from './UserInfo';
 import QuestionCard from './QuestionCard';
-import AskQuestion from './AskQuestion';
-import QuestionResult from './QuestionResult';
+import QuestionDetail from './QuestionDetail';
 import NewQuestion from './NewQuestion';
 import LeaderBoard from './LeaderBoard';
 
@@ -31,9 +30,8 @@ class MainContainer extends Component {
           ? null 
           : <Fragment>
               <Route exact path={match.path} component={DashBoard} />
-              <Route path='/ask' component={QuestionCard(AskQuestion, 'question-card-for-asking')} />
-              <Route path='/result' component={QuestionCard(QuestionResult, 'question-card-for-asking')} />
-              <Route path='/new' component={NewQuestion} />
+              <Route path='/questions/:questionId' component={QuestionCard(QuestionDetail, 'question-card-for-asking')} />
+              <Route path='/add' component={NewQuestion} />
               <Route path='/leaderboard' component={LeaderBoard} />
             </Fragment>           
         }

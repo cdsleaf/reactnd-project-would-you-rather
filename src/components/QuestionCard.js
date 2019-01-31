@@ -29,7 +29,7 @@ export default function (ComposedComponent, questionCardClass = 'question-card')
   }
 
   function mapStateToProps({ users, questions }, props){
-    const questionId = props.questionId || props.location.state.questionId;
+    const questionId = props.questionId || props.match.params.questionId;
     const question = questions[questionId];
     return {
       user: users[question.author],
