@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom'
 import { saveQuestionAnswerAtAll } from '../actions/shared';
 import QuestionOptionResult from './QuestionOptionResult';
 
@@ -31,19 +30,11 @@ class QuestionDetail extends Component {
       authedUser, 
       question.id, 
       this.state.selectedOption));
-
-    this.setState({
-      toHome: true,
-    })
   }
 
   render() {
 
-    if(this.state.toHome){
-      return <Redirect to='/' />
-    }
-
-    const { question, answered } = this.props;
+    const { questionId, question, answered } = this.props;
     const { optionOne, optionTwo } = question;
     const optionOneText = optionOne.text;
     const optionTwoText = optionTwo.text;
@@ -51,8 +42,8 @@ class QuestionDetail extends Component {
       <Fragment>
         {answered ? (
           <div className='question-result'>
-            <QuestionOptionResult option={'optionOne'} questionId={this.props.questionId}/>
-            <QuestionOptionResult option={'optionTwo'} questionId={this.props.questionId}/>
+            <QuestionOptionResult option={'optionOne'} questionId={questionId}/>
+            <QuestionOptionResult option={'optionTwo'} questionId={questionId}/>
           </div>
         ) : (
           <div className='question-options'>
@@ -84,6 +75,7 @@ class QuestionDetail extends Component {
 
 function mapStateToProps({ auth, users, questions }, props){
   return {
+    authedUser: auth.authedUser,
     question: questions[props.questionId],
     answered: users[auth.authedUser].answers.hasOwnProperty(props.questionId),
   }
