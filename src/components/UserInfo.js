@@ -1,33 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { logOut } from '../actions/shared';
 
-class UserInfo extends Component {
+const UserInfo = props => {
 
-  constructor(props){
-    super(props);
-
-    this.handleClikc = this.handleClikc.bind(this);
-  }
-
-  handleClikc() {
-    this.props.dispatch(logOut());
-  }
-
-  render() {
-    const { authedUserName, authedUserAvatarURL } = this.props;
-    return (
-      <div className='user-info'>
-        <p>Hello!!! {authedUserName}</p>
-        <img src={process.env.PUBLIC_URL + authedUserAvatarURL} alt="authedUserAvatar" />
-        <button onClick={this.handleClikc}>
-        <FaSignOutAlt className='logout-icon'/>
-          Logout
-        </button>
-      </div>
-    )
-  }
+  const { 
+    authedUserName, 
+    authedUserAvatarURL,
+    handleLogOut 
+  } = props;
+  
+  return (
+    <div className='user-info'>
+      <p>Hello!!! {authedUserName}</p>
+      <img src={process.env.PUBLIC_URL + authedUserAvatarURL} alt="authedUserAvatar" />
+      <button onClick={() => handleLogOut()}>
+      <FaSignOutAlt className='logout-icon'/>
+        Logout
+      </button>
+    </div>
+  )
 }
 
 function mapStateToProps({ auth, users }, props){
@@ -39,4 +32,10 @@ function mapStateToProps({ auth, users }, props){
   }
 }
 
-export default connect(mapStateToProps)(UserInfo);
+function mapDispatchToProps(dispatch){
+  return {
+    handleLogOut: () => dispatch(logOut()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserInfo);
