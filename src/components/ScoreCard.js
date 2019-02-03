@@ -1,8 +1,8 @@
 import React from 'react';
 import { GiTrophyCup } from 'react-icons/gi';
 
-const ScoreCard = () => {
-  const { user, medal } = this.props;
+const ScoreCard = (props) => {
+  const { user, medal } = props;
   const { 
     name, 
     avatarURL,

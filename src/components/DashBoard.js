@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import QuestionsCard from './QuestionCard';
 import QuestionSummary from './QuestionSummary';
 
-const Card = QuestionsCard(QuestionSummary);
+const Card = QuestionsCard(QuestionSummary, 'question-card');
 
 export class DashBoard extends Component {
 

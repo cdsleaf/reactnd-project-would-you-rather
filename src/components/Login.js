@@ -37,9 +37,10 @@ export class Login extends Component {
   }
 
   render() {
-    const {toHome, users} = this.props;
+    const { location, toHome, users} = this.props;
+    const { from } = location.state || { from: { pathname: '/' } }
     const usersArray = Object.values(users);
-    if(toHome) return <Redirect to='/' />
+    if(toHome) return <Redirect to={from} />
 
     return (
       <div className={'login-container'}>

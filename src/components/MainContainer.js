@@ -1,53 +1,51 @@
-import React, { Component, Fragment } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handlInitialData } from '../actions/shared';
-import DashBoard from './DashBoard';
 import Nav from './Nav';
 import UserInfo from './UserInfo';
-import QuestionCard from './QuestionCard';
-import QuestionDetail from './QuestionDetail';
-import NewQuestion from './NewQuestion';
-import LeaderBoard from './LeaderBoard';
 
-class MainContainer extends Component {
+export default function (ComposedComponent) {  
+  class MainContainer extends Component {
+    
+    componentDidMount() {
+      const { questions, getInitialData } = this.props;
+      if(Object.keys(questions).length === 0){
+        getInitialData();
+      }
+    }
 
-  componentDidMount() {
-    this.props.dispatch(handlInitialData());
-  }
-
-  render() {
-    const { loading, match } = this.props;
-    return (
-      <BrowserRouter>
-      <div className='app-container'>
-        <div className='header'>
-          <Nav />
-          <UserInfo />
+    render() {
+      const { loading }  = this.props;
+      return (
+        <div className='app-container'>
+          <div className='header'>
+            <Nav />
+            <UserInfo />
+          </div>
+          <hr />
+          {loading
+            ? null
+            : <ComposedComponent {...this.props}/>
+          }
         </div>
-        <hr />
-        {loading 
-          ? null 
-          : <Fragment>
-              <Route exact path={match.path} component={DashBoard} />
-              <Route path='/questions/:questionId' component={QuestionCard(QuestionDetail, 'question-card-for-asking')} />
-              <Route path='/add' component={NewQuestion} />
-              <Route path='/leaderboard' component={LeaderBoard} />
-            </Fragment>           
-        }
-      </div>
-      </BrowserRouter>
-    );
+      )
+    }
   }
-}
 
-function mapStateToProps({auth, users, questions}, props){
-  return {
-    loading: !auth.isAuthenticated,
-    users,
-    questions,
-    ...props
-  };
-}
+  const mapStateToProps = ({auth, users, questions}, props) => {
+    return {
+      loading: Object.entries(questions).length === 0 && questions.constructor === Object,
+      users,
+      questions,
+      ...props
+    };
+  }
 
-export default connect(mapStateToProps)(MainContainer);
+  const mapDispatchToProps = dispatch => {
+    return {
+      getInitialData: () => dispatch(handlInitialData()),
+    }
+  }
+  
+  return connect(mapStateToProps, mapDispatchToProps)(MainContainer);
+}

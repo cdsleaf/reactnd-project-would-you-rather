@@ -3,5 +3,10 @@ import { shallow } from 'enzyme';
 import ScoreCard from './ScoreCard';
 
 it('renders without crashing', () => {
-  shallow(<ScoreCard />);
+  const user = {
+  }
+  const medal = {
+
+  }
+  shallow(<ScoreCard user={user} medal={medal}/>);
 });
