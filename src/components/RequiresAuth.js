@@ -1,15 +1,22 @@
 import React from 'react';  
 import { connect } from 'react-redux';
-import { Redirect, Route } from 'react-router'
+import { Redirect, Route } from 'react-router';
+import { getSession } from '../utils/api.js';
+import { setAuthedUser } from '../actions/auth';
 
 const AuthRoute = props => {
   const { 
     path, 
-    isAuthenticated, 
     redirectUrl,
+    isAuthenticated,
     component: Component,
     exact,
   } = props;
+
+  const currentSessionId = getSession();
+  if(currentSessionId !== null) {
+    props.dispatch(setAuthedUser(currentSessionId));
+  }
 
   return (
     <Route exact={exact} path={path} render={(props) => (
@@ -23,7 +30,7 @@ const AuthRoute = props => {
   )
 }
 
-const mapStateToProps = ({ auth }, props) => {
+const mapStateToProps = ( { auth }, props) => {
   return {
     ...props,
     isAuthenticated: auth.isAuthenticated,

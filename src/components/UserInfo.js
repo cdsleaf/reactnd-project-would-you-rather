@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { logOut } from '../actions/shared';
@@ -6,15 +6,18 @@ import { logOut } from '../actions/shared';
 const UserInfo = props => {
 
   const { 
-    authedUserName, 
-    authedUserAvatarURL,
+    authedUser,
     handleLogOut 
   } = props;
   
   return (
     <div className='user-info'>
-      <p>Hello!!! {authedUserName}</p>
-      <img src={process.env.PUBLIC_URL + authedUserAvatarURL} alt="authedUserAvatar" />
+      {authedUser &&
+        <Fragment>
+          <p>Hello!!! {authedUser.name}</p>
+          <img src={process.env.PUBLIC_URL + authedUser.avatarURL} alt="authedUserAvatar" />
+        </Fragment> 
+      }
       <button onClick={() => handleLogOut()}>
       <FaSignOutAlt className='logout-icon'/>
         Logout
@@ -24,11 +27,9 @@ const UserInfo = props => {
 }
 
 function mapStateToProps({ auth, users }, props){
-  const authedUserObject = users[auth.authedUser];
   return {
     ...props,
-    authedUserName: authedUserObject.name,
-    authedUserAvatarURL: authedUserObject.avatarURL,
+    authedUser: users[auth.authedUser],
   }
 }
 

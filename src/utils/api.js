@@ -21,3 +21,15 @@ export function saveQuestion(info){
 export function saveQuestionAnswer(info){
   return _saveQuestionAnswer(info);
 }
+
+export function setSesstion(id){
+  localStorage.setItem('wouldYouRatherSession', id);
+}
+
+export function deleteSession(id){
+  localStorage.removeItem('wouldYouRatherSession');
+}
+
+export function getSession(){
+  return localStorage.getItem('wouldYouRatherSession');
+}

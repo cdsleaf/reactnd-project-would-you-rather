@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleInitialLoginData } from '../actions/shared';
 import { setAuthedUser } from '../actions/auth';
+import { setSesstion } from '../utils/api.js';
+import { getSession } from '../utils/api.js';
 
 export class Login extends Component {
 
@@ -30,10 +32,15 @@ export class Login extends Component {
       return;
     }
     this.props.dispatch(setAuthedUser(this.state.userId));
+    setSesstion(this.state.userId);
   }
 
   componentDidMount(){
     this.props.dispatch(handleInitialLoginData());
+    const currentSessionId = getSession();
+    if(currentSessionId !== null) {
+      this.props.dispatch(setAuthedUser(currentSessionId));
+    }
   }
 
   render() {

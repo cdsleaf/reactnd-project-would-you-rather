@@ -18,6 +18,7 @@ import {
   resetQuestions,
 } from './questions';
 import { showLoading, hideLoading } from 'react-redux-loading-bar'
+import { deleteSession } from '../utils/api.js';
 
 export function handleInitialLoginData(){
   return (dispatch) => {
@@ -76,5 +77,6 @@ export function logOut(){
     dispatch(resetAuth());
     dispatch(resetUsers());
     dispatch(resetQuestions());
+    deleteSession();
   }
 }
