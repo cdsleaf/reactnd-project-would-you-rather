@@ -32,7 +32,7 @@ export default function (ComposedComponent) {
     }
   }
 
-  const mapStateToProps = ({auth, users, questions}, props) => {
+  const mapStateToProps = ({ users, questions }, props) => {
     return {
       loading: Object.entries(questions).length === 0 && questions.constructor === Object,
       users,
