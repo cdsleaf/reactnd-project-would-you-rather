@@ -6,8 +6,13 @@ This game goes like this: A user is asked a question in the form: “Would you r
 
 ## Table of contents
 
+- [Demo](#demo)
 - [Quick Start](#quick-start)
 - [Documentation](#documentation)
+
+## Demo
+
+For a demo, check out [https://would-you-rather-react-version.firebaseapp.com/](https://would-you-rather-react-version.firebaseapp.com/)
 
 ## Quick Start
 
