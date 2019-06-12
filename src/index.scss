@@ -1,5 +1,53 @@
 $border-style: 0.1em solid grey;
 
+/** Responsive Start**/
+
+.menu {
+  display: none
+}
+
+@media screen and (max-width: 729px) {
+
+  .header {
+    margin-left: 0.1em;
+    margin-right: 0.1em;
+  }
+
+  .menu {
+    display: inline-block;
+    right: 0;
+    padding: 1em;
+  }
+  
+  .menu svg {
+    width: 32px;
+    fill: #E0E0E0;
+  }
+
+  .nav {
+    display: none;
+    z-index: 10;
+    background-color: #E0E0E0;
+    width: 9em;
+    position: absolute;
+    margin-top: 4.4em;
+
+    ul {
+      flex-direction: column;
+      padding-left: 1em;
+    }
+    li {
+      padding-left: 0;
+    }
+  }
+
+  .nav.open {
+    display: inline-block
+  }
+}
+
+/** Responsive End**/
+
 body {
   margin: 0;
   padding: 0;
@@ -67,9 +115,11 @@ code {
 .nav {
   ul {
     display: flex;
-    flex-direction: row;
     justify-content: flex-start;
     text-decoration: none;
+  }
+  li {
+    display: inline-block;
   }
   li:first-child {
     padding-left: 0;

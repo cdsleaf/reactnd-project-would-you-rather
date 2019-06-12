@@ -1,9 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-export default function Nav () {
+export default function Nav (props) {
+  const { menuClassName } = props;
   return (
-    <nav className='nav'>
+    <nav className={`nav ${menuClassName}`}>
       <ul>
         <li>
           <NavLink to='/' exact className='nav-link' activeClassName='nav-active' >
