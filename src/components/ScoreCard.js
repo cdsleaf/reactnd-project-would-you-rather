@@ -22,17 +22,20 @@ const ScoreCard = (props) => {
         <img src={process.env.PUBLIC_URL + avatarURL} alt="userAvatar" />
       </div>
       <div className='score-detail'>
-        <p>{name}</p> 
-        <p>Answered Questions <em>{scoreFromAnswered}</em></p>
+        <div>
+          <span>{name}</span>
+        </div>
+        
+        <span>Answered Questions <em>{scoreFromAnswered}</em></span>
         <hr />
-        <p>Created Questions <em>{scoreFromCreated}</em></p>
+        <span>Created Questions <em>{scoreFromCreated}</em></span>
       </div>
       <div className='total-score'>
         <div className='total-score-title'>
-          <p>Score</p>
+          <span>Score</span>
         </div>
         <div className='total-score-point'>
-          <p>{totalScore}</p>
+          <span>{totalScore}</span>
         </div>
       </div>
     </div>
