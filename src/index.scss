@@ -56,6 +56,10 @@ $border-style: 0.1em solid grey;
     border-bottom: $border-style;
   }
 
+  .question-card-for-asking {
+    width: 100%;
+  }
+
   .new-question {
     width: 100%;
     border-top: $border-style;
@@ -63,11 +67,14 @@ $border-style: 0.1em solid grey;
   }
 
   .leader-board {
-    width: 100%;
     margin: 1em auto;
   }
 
   .total-score{
+    margin: 0.5em 0.5em;
+  }
+
+  .total-score-title span {
     margin: 0.5em 0.5em;
   }
 }
@@ -89,6 +96,10 @@ $border-style: 0.1em solid grey;
     border: $border-style;
   }
 
+  .question-card-for-asking {
+    width: 50%;
+  }
+
   .new-question {
     width: 50%;
     border: $border-style;
@@ -108,6 +119,10 @@ $border-style: 0.1em solid grey;
     img {
       padding: 0 1em;
     }
+  }
+
+  .total-score-title span{
+    margin: 0.5em 1.5em;
   }
 }
 
@@ -190,7 +205,9 @@ code {
 
 .nav-link {
   text-decoration: none;
-  color: gray;
+  &:hover {
+    color: #0ABAB5;
+  }
 }
 
 .nav-link:hover {
@@ -265,7 +282,6 @@ code {
 .question-card-for-asking {
   display: flex;
   flex-direction: column;
-  width: 50%;
   margin: 5em auto;
   border: $border-style;
 }
@@ -457,7 +473,7 @@ code {
   margin: 0.5em 0;
   border-left: $border-style;
   border-right: $border-style;
-  padding: 0 1.5em;
+  padding: 0 1.6em;
 
   span {
     margin: 0.5em 0;
@@ -479,10 +495,6 @@ code {
 
 .total-score-title {
   border-bottom: $border-style;
-
-  span {
-    margin: 0.5em 1.5em;
-  }
 }
 
 .total-score-point {
