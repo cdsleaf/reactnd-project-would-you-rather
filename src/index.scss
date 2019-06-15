@@ -8,6 +8,10 @@ $border-style: 0.1em solid grey;
 
 @media screen and (max-width: 729px) {
 
+  .login-container {
+    width: 95%;
+  }
+
   .header {
     margin-left: 0.1em;
     margin-right: 0.1em;
@@ -81,6 +85,11 @@ $border-style: 0.1em solid grey;
 
 @media screen and (min-width: 730px) {
   
+  .login-container {
+    width: 30%;
+    border: $border-style;
+  }
+
   .header {
     margin-left: 4em;
     margin-right: 4em;
@@ -158,10 +167,8 @@ code {
 }
 
 .login-container {
-  width: 30%;
   height: 50%;
   margin: 10% auto;
-  border: $border-style;
   padding: 0.5em;
   text-align: center;
 }
