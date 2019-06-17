@@ -62,6 +62,8 @@ $border-style: 0.1em solid grey;
 
   .question-card-for-asking {
     width: 100%;
+    border-top: $border-style;
+    border-bottom: $border-style;
   }
 
   .new-question {
@@ -107,6 +109,7 @@ $border-style: 0.1em solid grey;
 
   .question-card-for-asking {
     width: 50%;
+    border: $border-style;
   }
 
   .new-question {
@@ -290,7 +293,6 @@ code {
   display: flex;
   flex-direction: column;
   margin: 5em auto;
-  border: $border-style;
 }
 
 .question-card-header {
