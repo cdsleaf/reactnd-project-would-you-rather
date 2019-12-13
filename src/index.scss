@@ -3,11 +3,10 @@ $border-style: 0.1em solid grey;
 /** Responsive Start**/
 
 .menu {
-  display: none
+  display: none;
 }
 
 @media screen and (max-width: 729px) {
-
   .login-container {
     width: 95%;
   }
@@ -22,19 +21,19 @@ $border-style: 0.1em solid grey;
     right: 0;
     padding: 1em;
   }
-  
+
   .menu svg {
     width: 32px;
-    fill: #0ABAB5;;
+    fill: #0abab5;
   }
 
   .nav {
     display: none;
     z-index: 10;
-    background-color: #E0E0E0;
-    width: 9em;
+    background-color: #e0e0e0;
+    width: 30%;
+    height: 100vh;
     position: absolute;
-    margin-top: 4.4em;
 
     ul {
       flex-direction: column;
@@ -46,7 +45,7 @@ $border-style: 0.1em solid grey;
   }
 
   .nav.open {
-    display: inline-block
+    display: inline-block;
   }
 
   hr {
@@ -76,7 +75,7 @@ $border-style: 0.1em solid grey;
     margin: 1em auto;
   }
 
-  .total-score{
+  .total-score {
     margin: 0.5em 0.5em;
   }
 
@@ -86,7 +85,6 @@ $border-style: 0.1em solid grey;
 }
 
 @media screen and (min-width: 730px) {
-  
   .login-container {
     width: 30%;
     border: $border-style;
@@ -123,7 +121,7 @@ $border-style: 0.1em solid grey;
     border: 0.1em solid grey;
   }
 
-  .total-score{
+  .total-score {
     margin: 0.5em 2em;
   }
 
@@ -133,7 +131,7 @@ $border-style: 0.1em solid grey;
     }
   }
 
-  .total-score-title span{
+  .total-score-title span {
     margin: 0.5em 1.5em;
   }
 }
@@ -161,7 +159,7 @@ li {
 }
 
 hr {
-  border: 0.1em solid #0ABAB5;
+  border: 0.1em solid #0abab5;
 }
 
 code {
@@ -216,12 +214,12 @@ code {
 .nav-link {
   text-decoration: none;
   &:hover {
-    color: #0ABAB5;
+    color: #0abab5;
   }
 }
 
 .nav-link:hover {
-  color:blue;
+  color: blue;
 }
 
 .user-info {
@@ -266,11 +264,11 @@ code {
 
   p {
     text-align: center;
-    cursor: pointer
+    cursor: pointer;
   }
 
-  p:hover{
-    color: blue
+  p:hover {
+    color: blue;
   }
 }
 
@@ -304,7 +302,7 @@ code {
   }
 }
 
-.card-content{
+.card-content {
   width: 100%;
   margin: 0.5em 0;
   border-left: $border-style;
@@ -336,8 +334,8 @@ code {
   button {
     width: 100%;
     background: white;
-    border: 0.1em solid #0ABAB5;
-    color: #0ABAB5;
+    border: 0.1em solid #0abab5;
+    color: #0abab5;
     padding: 0.2em;
     cursor: pointer;
   }
@@ -355,8 +353,8 @@ code {
   button {
     width: 100%;
     background: white;
-    border: 0.1em solid #0ABAB5;
-    color: #0ABAB5;
+    border: 0.1em solid #0abab5;
+    color: #0abab5;
     padding: 0.2em;
     cursor: pointer;
   }
@@ -398,7 +396,7 @@ code {
 }
 
 .new-question-header {
-  border-bottom: 0.1em solid #0ABAB5;
+  border-bottom: 0.1em solid #0abab5;
 
   p {
     text-align: center;
@@ -428,7 +426,7 @@ code {
     position: relative;
     padding: 0 1em;
     top: -0.8em;
-    content: 'OR';
+    content: "OR";
     background-color: white;
   }
 
@@ -440,8 +438,8 @@ code {
   button {
     width: 100%;
     background: white;
-    border: 0.1em solid #0ABAB5;
-    color: #0ABAB5;
+    border: 0.1em solid #0abab5;
+    color: #0abab5;
     padding: 0.2em;
     cursor: pointer;
   }
@@ -466,15 +464,15 @@ code {
 }
 
 .goldMedalColor {
-  color: #D6AF36;
+  color: #d6af36;
 }
 
-.silverMedalColor{
-  color: #A7A7AD;
+.silverMedalColor {
+  color: #a7a7ad;
 }
 
-.bronzeMedalColor{
-  color: #A77044;
+.bronzeMedalColor {
+  color: #a77044;
 }
 
 .score-detail {
@@ -502,7 +500,7 @@ code {
   }
 }
 
-.total-score{
+.total-score {
   border: $border-style;
 }
 
