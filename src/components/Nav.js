@@ -1,27 +1,73 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+import { device } from '../deviceBreakpoints';
 
-export default function Nav (props) {
-  const { menuClassName } = props;
+const Navigation = styled.nav`
+  display: ${props => (props.open ? 'inline-block' : 'none')};
+  z-index: 9999;
+  background-color: #e0e0e0;
+  width: 40%;
+  height: 100vh;
+  position: absolute;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    padding-left: 1em;
+  }
+  li {
+    display: inline-block;
+    padding-left: 0;
+  }
+
+  @media ${device.tablet} {
+    display: block;
+    background-color: transparent;
+
+    ul {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+`;
+
+const activeClassName = 'nav-item-active';
+const NavItem = styled(NavLink).attrs({
+  activeClassName,
+})`
+  text-decoration: none;
+  &:hover {
+    color: #0abab5;
+  }
+
+  &.${activeClassName} {
+    font-weight: bold;
+  }
+}
+`;
+
+export default function Nav(props) {
   return (
-    <nav className={`nav ${menuClassName}`}>
+    <Navigation open={props.menuOpen}>
       <ul>
         <li>
-          <NavLink to='/' exact className='nav-link' activeClassName='nav-active' >
+          <NavItem to="/" exact activeClassName={activeClassName}>
             Home
-          </NavLink>
+          </NavItem>
         </li>
         <li>
-          <NavLink to='/add' className='nav-link' activeClassName='nav-active' >
+          <NavItem to="/add" activeClassName={activeClassName}>
             New Question
-          </NavLink>
+          </NavItem>
         </li>
         <li>
-          <NavLink to='/leaderboard' className='nav-link' activeClassName='nav-active'>
+          <NavItem to="/leaderboard" activeClassName={activeClassName}>
             Leader Board
-          </NavLink>
+          </NavItem>
         </li>
       </ul>
-    </nav>
-  )
+    </Navigation>
+  );
 }
