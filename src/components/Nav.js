@@ -4,12 +4,14 @@ import styled from 'styled-components';
 import { device } from '../deviceBreakpoints';
 
 const Navigation = styled.nav`
-  display: ${props => (props.open ? 'inline-block' : 'none')};
+  display: inline-block;
   z-index: 9999;
   background-color: #e0e0e0;
   width: 40%;
   height: 100vh;
   position: absolute;
+  left: ${props => (props.open ? '0' : '-999px')};
+  transition-duration: 1s;
 
   ul {
     display: flex;
@@ -25,6 +27,7 @@ const Navigation = styled.nav`
   @media ${device.tablet} {
     display: block;
     background-color: transparent;
+    left: 0px;
 
     ul {
       flex-direction: row;
