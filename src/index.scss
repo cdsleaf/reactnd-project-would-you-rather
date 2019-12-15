@@ -172,37 +172,6 @@ code {
   display: flex;
 }
 
-.user-info {
-  display: flex;
-  margin-left: auto;
-
-  p {
-    margin: auto;
-  }
-
-  img {
-    width: 4em;
-    height: 4em;
-  }
-
-  button {
-    margin: 1.5em;
-    border-radius: 0.5em;
-    border: none;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background-color: black;
-    color: white;
-  }
-}
-
-.logout-icon {
-  vertical-align: middle;
-  margin: 0.3em;
-}
-
 .dashboard-header {
   display: flex;
   border-bottom: $border-style;

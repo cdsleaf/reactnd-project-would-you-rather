@@ -1,42 +1,61 @@
-import React, { Fragment } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { logOut } from '../actions/shared';
+import styled from 'styled-components';
+
+const User = styled.div`
+  display: flex;
+  margin-left: auto;
+
+  p {
+    margin: auto;
+  }
+
+  img {
+    width: 4em;
+    height: 4em;
+  }
+
+  button {
+    margin: 1.5em;
+    border-radius: 0.5em;
+    border: none;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: black;
+    color: white;
+  }
+`;
+
+const StyledFaSignOutAlt = styled(FaSignOutAlt)`
+  vertical-align: middle;
+  margin: 0.3em;
+`;
 
 const UserInfo = props => {
+  const authedUser = useSelector(({ auth, users }) => users[auth.authedUser]);
+  const dispatch = useDispatch();
 
-  const { 
-    authedUser,
-    handleLogOut 
-  } = props;
-  
   return (
-    <div className='user-info'>
-      {authedUser &&
-        <Fragment>
+    <User>
+      {authedUser && (
+        <>
           <p>Hello!!! {authedUser.name}</p>
-          <img src={process.env.PUBLIC_URL + authedUser.avatarURL} alt="authedUserAvatar" />
-        </Fragment> 
-      }
-      <button onClick={() => handleLogOut()}>
-      <FaSignOutAlt className='logout-icon'/>
+          <img
+            src={process.env.PUBLIC_URL + authedUser.avatarURL}
+            alt="authedUserAvatar"
+          />
+        </>
+      )}
+      <button onClick={() => dispatch(logOut())}>
+        <StyledFaSignOutAlt />
         Logout
       </button>
-    </div>
-  )
-}
+    </User>
+  );
+};
 
-function mapStateToProps({ auth, users }, props){
-  return {
-    ...props,
-    authedUser: users[auth.authedUser],
-  }
-}
-
-function mapDispatchToProps(dispatch){
-  return {
-    handleLogOut: () => dispatch(logOut()),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserInfo);
+export default UserInfo;

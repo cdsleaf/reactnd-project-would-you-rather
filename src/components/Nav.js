@@ -4,14 +4,14 @@ import styled from 'styled-components';
 import { device } from '../deviceBreakpoints';
 
 const Navigation = styled.nav`
-  display: inline-block;
+  display: 'inline-block';
   z-index: 9999;
   background-color: #e0e0e0;
   width: 40%;
   height: 100vh;
   position: absolute;
   left: ${props => (props.open ? '0' : '-999px')};
-  transition-duration: 1s;
+  transition-duration: 0.5s;
 
   ul {
     display: flex;
@@ -28,6 +28,7 @@ const Navigation = styled.nav`
     display: block;
     background-color: transparent;
     left: 0px;
+    transition-duration: 0s;
 
     ul {
       flex-direction: row;
