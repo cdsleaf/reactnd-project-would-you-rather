@@ -37,10 +37,6 @@ $border-style: 0.1em solid grey;
     border-bottom: $border-style;
   }
 
-  .leader-board {
-    margin: 1em auto;
-  }
-
   .total-score {
     margin: 0.5em 0.5em;
   }
@@ -68,12 +64,6 @@ $border-style: 0.1em solid grey;
   .question-card-for-asking {
     width: 50%;
     border: $border-style;
-  }
-
-  .leader-board {
-    width: 50%;
-    margin: 1em auto;
-    border: 0.1em solid grey;
   }
 
   .total-score {
@@ -199,11 +189,6 @@ $border-style: 0.1em solid grey;
     height: 1em;
     border-top: 0.1em solid blue;
   }
-}
-
-.leader-board {
-  margin: 1em auto;
-  padding: 1em 1em 0 1em;
 }
 
 .score-card {
