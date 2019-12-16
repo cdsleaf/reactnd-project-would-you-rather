@@ -1,68 +1,96 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import QuestionsCard from './QuestionCard';
 import QuestionSummary from './QuestionSummary';
+import styled from 'styled-components';
+import { device } from '../deviceBreakpoints';
+
+const DashBoardMain = styled.div`
+  width: 100%;
+  margin: 1em auto;
+  border-top: var(--border-style);
+  border-bottom: var(--border-style);
+
+  @media ${device.tablet} {
+    width: 50%;
+    border: var(--border-style);
+  }
+`;
+
+const DashBoardHeader = styled.div`
+  display: flex;
+  border-bottom: var(--border-style);
+  font-weight: bold;
+
+  div {
+    flex: 1;
+  }
+
+  div:nth-child(1) {
+    border-right: var(--border-style);
+  }
+
+  p {
+    text-align: center;
+    cursor: pointer;
+  }
+
+  p:hover {
+    color: blue;
+  }
+`;
+
+const DashBoardTab = styled.div`
+  background-color: ${props =>
+    props.selectedTab ? 'lightgrey' : 'transparent'};
+`;
 
 const Card = QuestionsCard(QuestionSummary, 'question-card');
 
-export class DashBoard extends Component {
+function DashBoard() {
+  const UNANSWERED = 'unAnsweredQuestions';
+  const ANSWERED = 'answeredQuestions';
+  const questions = useSelector(({ auth, users, questions }) => {
+    const authedUser = users[auth.authedUser];
+    const questionsArray = Object.values(questions).sort(
+      (a, b) => b.timestamp - a.timestamp
+    );
+    return {
+      unAnsweredQuestions: questionsArray.filter(
+        v => authedUser.answers[v.id] === undefined
+      ),
+      answeredQuestions: questionsArray.filter(
+        v => authedUser.answers[v.id] !== undefined
+      ),
+    };
+  });
+  const [selectedTab, setSelectedTab] = useState('unAnsweredQuestions');
+  const handleClick = event => {
+    setSelectedTab(event.target.id);
+  };
 
-  constructor(props){
-    super(props);
-
-    this.state = {
-      selectedTab: 'unAnsweredQuestions',
-    }
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(event){
-    this.setState({
-      selectedTab: event.target.id,
-    })  
-  }
-
-  componentDidMount(){
-    
-  }
-  
-  render() { 
-    const UNANSWERED = 'unAnsweredQuestions';
-    const ANSWERED = 'answeredQuestions';
-    const questions = this.props[this.state.selectedTab];
-    return (
-      <div className='dashboard'>
-        <div className='dashboard-header'>
-          <div className={this.state.selectedTab === UNANSWERED 
-            ? 'dashboard-header-selected' 
-            : ''}>
-            <p id={UNANSWERED} onClick={this.handleClick}>Unanswered Questions</p>
-          </div>
-          <div className={this.state.selectedTab === ANSWERED 
-            ? 'dashboard-header-right dashboard-header-selected' 
-            : 'dashboard-header-right'}>
-            <p id={ANSWERED} onClick={this.handleClick}>Answered Questions</p>
-          </div>
-        </div>
-        <div className='question-list'>
-          {questions.map(question => (
+  return (
+    <DashBoardMain>
+      <DashBoardHeader>
+        <DashBoardTab selectedTab={selectedTab === UNANSWERED}>
+          <p id={UNANSWERED} onClick={handleClick}>
+            Unanswered Questions
+          </p>
+        </DashBoardTab>
+        <DashBoardTab selectedTab={selectedTab === ANSWERED}>
+          <p id={ANSWERED} onClick={handleClick}>
+            Answered Questions
+          </p>
+        </DashBoardTab>
+      </DashBoardHeader>
+      <div>
+        {questions[selectedTab] &&
+          questions[selectedTab].map(question => (
             <Card key={question.id} questionId={question.id} />
           ))}
-        </div>
       </div>
-    );
-  }
+    </DashBoardMain>
+  );
 }
 
-export function mapStateToProps({ auth, users, questions }){
-  
-  const authedUser = users[auth.authedUser];
-  const questionsArray = Object.values(questions).sort((a, b) => b.timestamp - a.timestamp);
-  return {
-    unAnsweredQuestions: questionsArray.filter(v => authedUser.answers[v.id] === undefined),
-    answeredQuestions: questionsArray.filter(v => authedUser.answers[v.id] !== undefined)
-  }
-}
-
-export default connect(mapStateToProps)(DashBoard)
+export default DashBoard;

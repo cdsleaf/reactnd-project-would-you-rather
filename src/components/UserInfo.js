@@ -35,7 +35,7 @@ const StyledFaSignOutAlt = styled(FaSignOutAlt)`
   margin: 0.3em;
 `;
 
-const UserInfo = props => {
+const UserInfo = () => {
   const authedUser = useSelector(({ auth, users }) => users[auth.authedUser]);
   const dispatch = useDispatch();
 
