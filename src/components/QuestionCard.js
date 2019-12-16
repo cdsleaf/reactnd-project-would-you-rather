@@ -7,7 +7,7 @@ const QuestionCardDeader = styled.div`
   border-bottom: var(--border-style);
   background-color: powderblue;
   p {
-    margin: 0.5em;
+    margin: 0.5rem;
     font-weight: bold;
   }
 `;
@@ -18,21 +18,21 @@ const QuestionCardBody = styled.div`
 
 const CardAvatar = styled.div`
   img {
-    width: 6em;
-    height: 6em;
-    padding: 0 1em;
+    width: 6rem;
+    height: 6rem;
+    padding: 0 1rem;
   }
 `;
 
 const CardContent = styled.div`
   width: 100%;
-  margin: 0.5em 0;
+  margin: 0.5rem 0;
   border-left: var(--border-style);
-  padding: 0 0.5em;
+  padding: 0 0.5rem;
 
   p {
     margin: 0;
-    font-size: 1.5em;
+    font-size: 1.5rem;
   }
 `;
 export default function(

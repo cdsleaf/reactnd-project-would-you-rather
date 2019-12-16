@@ -17,7 +17,7 @@ const Navigation = styled.nav`
     display: flex;
     flex-direction: column;
     text-decoration: none;
-    padding-left: 1em;
+    padding-left: 1rem;
   }
   li {
     display: inline-block;

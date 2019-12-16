@@ -16,7 +16,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   :root {
-    --border-style: 0.1em solid grey;
+    --border-style: 0.1rem solid grey;
   }
 
   body {
@@ -35,12 +35,12 @@ const GlobalStyle = createGlobalStyle`
 
   li {
     list-style-type: none;
-    padding: 0.5em;
+    padding: 0.5rem;
     text-decoration: none;
   }
 
   hr {
-    border: 0.1em solid #0abab5;
+    border: 0.1rem solid #0abab5;
   }
 
   code {

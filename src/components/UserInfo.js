@@ -13,13 +13,13 @@ const User = styled.div`
   }
 
   img {
-    width: 4em;
-    height: 4em;
+    width: 4rem;
+    height: 4rem;
   }
 
   button {
-    margin: 1.5em;
-    border-radius: 0.5em;
+    margin: 1.5rem;
+    border-radius: 0.5rem;
     border: none;
     cursor: pointer;
   }
@@ -32,7 +32,7 @@ const User = styled.div`
 
 const StyledFaSignOutAlt = styled(FaSignOutAlt)`
   vertical-align: middle;
-  margin: 0.3em;
+  margin: 0.3rem;
 `;
 
 const UserInfo = () => {

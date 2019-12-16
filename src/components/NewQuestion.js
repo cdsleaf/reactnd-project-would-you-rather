@@ -48,8 +48,8 @@ const NewQuestionBody = styled.div`
 
   hr:after {
     position: relative;
-    padding: 0 1em;
-    top: -0.8em;
+    padding: 0 1rem;
+    top: -0.8rem;
     content: 'OR';
     background-color: white;
   }

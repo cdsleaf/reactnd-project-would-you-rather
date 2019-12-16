@@ -7,7 +7,7 @@ import { device } from '../deviceBreakpoints';
 
 const DashBoardMain = styled.div`
   width: 100%;
-  margin: 1em auto;
+  margin: 1rem auto;
   border-top: var(--border-style);
   border-bottom: var(--border-style);
 

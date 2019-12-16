@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  margin: 10em;
+  margin: 10rem;
   p {
     text-align: center;
   }
