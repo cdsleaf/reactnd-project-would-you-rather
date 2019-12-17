@@ -35,7 +35,7 @@ export default function(ComposedComponent) {
       if (Object.keys(questions).length === 0) {
         dispatch(handlInitialData());
       }
-    });
+    }, [dispatch, questions]);
 
     return (
       <>

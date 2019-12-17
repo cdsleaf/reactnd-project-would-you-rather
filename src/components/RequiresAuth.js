@@ -1,41 +1,37 @@
-import React from 'react';  
-import { connect } from 'react-redux';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Route } from 'react-router';
 import { getSession } from '../utils/api.js';
 import { setAuthedUser } from '../actions/auth';
 
-const AuthRoute = props => {
-  const { 
-    path, 
-    redirectUrl,
-    isAuthenticated,
-    component: Component,
-    exact,
-  } = props;
-
+function AuthRoute(props) {
+  const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated);
+  const dispatch = useDispatch();
+  const { path, component: Component, exact } = props;
+  const redirectUrl = '/login';
   const currentSessionId = getSession();
-  if(currentSessionId !== null) {
-    props.dispatch(setAuthedUser(currentSessionId));
+  if (currentSessionId !== null) {
+    dispatch(setAuthedUser(currentSessionId));
   }
 
   return (
-    <Route exact={exact} path={path} render={(props) => (
-      isAuthenticated === true
-        ? <Component {...props} />
-        : <Redirect to={{
-            pathname: redirectUrl,
-            state: { from: props.location }
-          }} />
-    )} />
-  )
+    <Route
+      exact={exact}
+      path={path}
+      render={props =>
+        isAuthenticated === true ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: redirectUrl,
+              state: { from: props.location },
+            }}
+          />
+        )
+      }
+    />
+  );
 }
 
-const mapStateToProps = ( { auth }, props) => {
-  return {
-    ...props,
-    isAuthenticated: auth.isAuthenticated,
-    redirectUrl: '/login',
-  };
-};
-
-export default connect(mapStateToProps)(AuthRoute);
+export default AuthRoute;

@@ -1,85 +1,92 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { handleInitialLoginData } from '../actions/shared';
 import { setAuthedUser } from '../actions/auth';
-import { setSesstion } from '../utils/api.js';
-import { getSession } from '../utils/api.js';
+import { setSesstion, getSession } from '../utils/api.js';
+import styled from 'styled-components';
+import { device } from '../deviceBreakpoints';
 
-export class Login extends Component {
+const LoginContainer = styled.div`
+  width: 95%;
+  height: 50%;
+  margin: 10% auto;
+  padding: 0.5em;
+  text-align: center;
 
-  constructor(props){
-    super(props);
-    this.state={
-      userId: '',
-    }
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+  @media ${device.tablet} {
+    width: 30%;
+    border: var(--border-style);
   }
+`;
 
-  handleChange(event){
-    const selectedValue = event.target.value;
-    this.setState(state => ({
-      ...state,
-      userId: selectedValue,
-    }));
-  }
+const LoginUserList = styled.select`
+  width: 100%;
+  height: 2em;
+  margin: 0.5em 0;
+`;
 
-  handleClick(event){
-    if(this.state.userId === '') {
-      alert("please select the user for login");
+const LoginSignInButton = styled.button`
+  width: 100%;
+  height: 2em;
+`;
+
+function Login(props) {
+  const { toHome, usersArray } = useSelector(({ auth, users }) => ({
+    toHome: auth.isAuthenticated,
+    usersArray: Object.values(users),
+  }));
+  const dispatch = useDispatch();
+  const [userId, setUserId] = useState('');
+  const { location } = props;
+  const { from } = location.state || { from: { pathname: '/' } };
+
+  const handleClick = event => {
+    if (userId === '') {
+      alert('please select the user for login');
       return;
     }
-    this.props.dispatch(setAuthedUser(this.state.userId));
-    setSesstion(this.state.userId);
-  }
+    dispatch(setAuthedUser(userId));
+    setSesstion(userId);
+  };
 
-  componentDidMount(){
-    this.props.dispatch(handleInitialLoginData());
+  useEffect(() => {
+    dispatch(handleInitialLoginData());
     const currentSessionId = getSession();
-    if(currentSessionId !== null) {
-      this.props.dispatch(setAuthedUser(currentSessionId));
+    if (currentSessionId !== null) {
+      dispatch(setAuthedUser(currentSessionId));
     }
-  }
+  }, [dispatch]);
 
-  render() {
-    const { location, toHome, users} = this.props;
-    const { from } = location.state || { from: { pathname: '/' } }
-    const usersArray = Object.values(users);
-    if(toHome) return <Redirect to={from} />
+  if (toHome) return <Redirect to={from} />;
 
-    return (
-      <div className={'login-container'}>
-        <p>Welcome to the Would You Rather App!!!</p>
-        <hr/>
-        <img className={'logo'} src={process.env.PUBLIC_URL +'/img/react_redux_logo.jpg'} alt="Logo" />
-        <p>Sign In</p>
-        <select 
-          className={'login-user-list'} 
-          value={this.state.userId} 
-          onChange={this.handleChange}>
-          <option value='' disabled>Select User</option>
-          {usersArray.map( user => (
-            <option value={user.id} key={user.id}>{user.name}</option>
-          ))}
-        </select>
-        <button 
-          type='button'
-          className={'login-signIn-button'}
-          onClick={this.handleClick}>
-            Sign In
-        </button>
-      </div>
-    );
-  }
+  return (
+    <LoginContainer>
+      <p>Welcome to the Would You Rather App!!!</p>
+      <hr />
+      <img
+        className={'logo'}
+        src={process.env.PUBLIC_URL + '/img/react_redux_logo.jpg'}
+        alt="Logo"
+      />
+      <p>Sign In</p>
+      <LoginUserList
+        value={userId}
+        onChange={({ target }) => setUserId(target.value)}
+      >
+        <option value="" disabled>
+          Select User
+        </option>
+        {usersArray.map(user => (
+          <option value={user.id} key={user.id}>
+            {user.name}
+          </option>
+        ))}
+      </LoginUserList>
+      <LoginSignInButton type="button" onClick={handleClick}>
+        Sign In
+      </LoginSignInButton>
+    </LoginContainer>
+  );
 }
-
-function mapStateToProps({ auth, users }){
-  return {
-    toHome: auth.isAuthenticated,
-    users,
-  }
-}
-
-export default connect(mapStateToProps)(Login)
+export default Login;
